@@ -7,8 +7,10 @@ import com.ppizil.solutionapp.di.appModule
 import com.ppizil.solutionapp.di.networkModule
 import com.ppizil.solutionapp.di.userCaseModule
 import com.ppizil.solutionapp.di.viewmodelModule
+import com.ppizil.solutionapp.utils.SharedPreferenceBase
 import com.ppizil.solutionapp.viewmodel.auth.LoginViewModel
 import com.ppizil.solutionapp.viewmodel.auth.SingupViewModel
+import com.ppizil.solutionapp.viewmodel.main.MainViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verifyOrder
@@ -27,7 +29,7 @@ import org.koin.core.inject
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class AuthTest : KoinComponent {
+class AuthTest : KoinComponent{
 
     @get:Rule
     val instantTaskRule = InstantTaskExecutorRule()
@@ -38,8 +40,14 @@ class AuthTest : KoinComponent {
     @RelaxedMockK
     lateinit var loginObserver: Observer<Boolean?>
 
+    @RelaxedMockK
+    lateinit var userAccountObserver: Observer<Boolean?>
+
     val viewmodel: SingupViewModel by inject()
     val loginViewModel: LoginViewModel by inject()
+    val mainViewModel :MainViewModel by inject()
+
+
     @Before
     fun init() {
         RxJavaPlugins.setIoSchedulerHandler {
@@ -54,6 +62,7 @@ class AuthTest : KoinComponent {
 
         viewmodel.lResultRegist.observeForever(registObserver)
         loginViewModel.lResultLogin.observeForever(loginObserver)
+        mainViewModel.lResultUserAccount.observeForever(userAccountObserver)
     }
 
     @After
@@ -82,18 +91,28 @@ class AuthTest : KoinComponent {
     @Test
     fun `이메일 형식에 맞고, 패스워드 길이가 통과되고, 정상적으로 로그인 하며, 토큰을 받아와야함 `() {
 
-        loginViewModel.requestLoginApi("admin@naver.com", "fkdl0224!")
+        loginViewModel.requestLoginApi("admidn@naver.com", "fkdl0224!")
         loginViewModel.requestLoginApi("naver.com", "fkdl0224!")
         loginViewModel.requestLoginApi("", "fkdl0224!")
         loginViewModel.requestLoginApi("admin@naver.com", "fkdl")
 
 
         verifyOrder {
-            loginObserver.onChanged(true)
+            loginObserver.onChanged(false)
             loginObserver.onChanged(false)
             loginObserver.onChanged(false)
             loginObserver.onChanged(false)
         }
+    }
 
+    @Test
+    fun `유저 어카운트 가져오기`(){
+        mainViewModel.getUserAccountApi(
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQG5hdmVyLmNvbSIsInVpZCI6MTUsIm5pY2tuYW1lIjoi7J207J6s6rCVIiwiaWF0IjoxNTkxMTA0ODk0LCJleHAiOjE1OTExOTEyOTR9.jRP1G7MPZkE8bheUGwFrvCIF8dsT39Gf6zoyrt1sOS0"
+        )
+
+        verifyOrder {
+            userAccountObserver.onChanged(false)
+        }
     }
 }

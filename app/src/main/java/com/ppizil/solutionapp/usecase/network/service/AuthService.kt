@@ -25,4 +25,12 @@ interface AuthService {
         @Field("email") email :String?,
         @Field("password") pwd :String?
     ):Single<Response<ResultDto>>
+
+
+    @FormUrlEncoded
+    @POST("user/account")
+    fun callAccountApi(
+        @Field("header") token:String
+    )
+    :Single<Response<ResultDto>>
 }

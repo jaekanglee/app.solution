@@ -1,5 +1,6 @@
 package com.ppizil.solutionapp.di
 
+import com.google.gson.Gson
 import com.ppizil.solutionapp.usecase.network.repository.auth.AuthModel
 import com.ppizil.solutionapp.usecase.network.repository.auth.AuthRepo
 import org.koin.dsl.module
@@ -8,6 +9,7 @@ import org.koin.dsl.module
 @JvmField
 val userCaseModule = module {
 
-    factory { AuthModel(get()) }
+    single { Gson() }
+    factory { AuthModel(get(),get()) }
 
 }

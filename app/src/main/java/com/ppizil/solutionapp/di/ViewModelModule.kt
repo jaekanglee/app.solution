@@ -2,6 +2,7 @@ package com.ppizil.solutionapp.di
 
 import com.ppizil.solutionapp.viewmodel.auth.LoginViewModel
 import com.ppizil.solutionapp.viewmodel.auth.SingupViewModel
+import com.ppizil.solutionapp.viewmodel.main.MainViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -16,5 +17,8 @@ val viewmodelModule = module{
 
     viewModel {
         LoginViewModel(get())
+    }
+    viewModel {
+        MainViewModel(get())
     }
 }

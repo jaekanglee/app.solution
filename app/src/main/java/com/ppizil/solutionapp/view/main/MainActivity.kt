@@ -7,6 +7,8 @@ import com.ppizil.solutionapp.R
 import com.ppizil.solutionapp.databinding.ActivityMainBinding
 import com.ppizil.solutionapp.view.activity.BaseActivity
 import com.ppizil.solutionapp.view.activity.auth.LoginActivity
+import com.ppizil.solutionapp.viewmodel.main.MainViewModel
+import org.koin.android.ext.android.inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>(
     R.layout.activity_main,
@@ -14,24 +16,36 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 ) {
 
 
+    val mainViewModel :MainViewModel by inject()
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getExtrasData()
+        setInitData()
+        bindViewModel()
+        setObserver()
+        afterInits()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.onResume()
+    }
+
     override fun setInitData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getExtrasData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun bindViewModel() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun setObserver() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun afterInits() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     companion object {

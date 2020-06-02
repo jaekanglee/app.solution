@@ -2,6 +2,7 @@ package com.ppizil.solutionapp.utils
 
 import android.content.Context
 import android.widget.Toast
+import com.google.gson.Gson
 import java.util.regex.Pattern
 
 object Const {
@@ -40,5 +41,9 @@ object Const {
         } else {
             false
         }
+    }
+
+    fun convertObjectToString(gson:Gson,values:Any):String{
+        return gson.toJson(values)
     }
 }

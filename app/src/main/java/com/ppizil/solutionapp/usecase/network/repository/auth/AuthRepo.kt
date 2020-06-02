@@ -18,4 +18,8 @@ class AuthRepo (val authServer : AuthService){
     fun requestLoginApi(email:String,passowrd:String):Single<Response<ResultDto>>{
         return authServer.callLoginApi(email,passowrd)
     }
+
+    fun getUserAccountApi(token:String):Single<Response<ResultDto>>{
+        return authServer.callAccountApi(token)
+    }
 }
