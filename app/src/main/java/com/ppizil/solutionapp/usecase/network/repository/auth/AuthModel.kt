@@ -33,8 +33,38 @@ class AuthModel(val authRepo: AuthRepo) {
                     Single.error(HttpException(it))
                 }
             }
+    }
 
 
+    fun callLoginApi(email:String,pwd:String):Single<ResponseEntity>{
+
+        return authRepo.requestLoginApi(email,pwd)
+            .flatMap {
+                return@flatMap if(it.isSuccessful){
+                    val body = it.body()
+                    body?.let {
+                        val resultCode = body.resultCode
+                        when(resultCode){
+                            200->{
+                                body.resultData.get("user_token").asString?.let {
+                                    SharedPreferenceBase.instance.setString("token",it)
+                                    responseEntity.resultCode=resultCode
+                                    responseEntity.message=body.message
+                                    Single.just(responseEntity)
+                                }?: kotlin.run {
+                                    Single.just(null)
+                                }
+                            }
+                            else ->{
+                                Single.just(null)
+                            }
+                        }
+                    }
+                }
+                else{
+                    Single.just(null)
+                }
+            }
     }
 
 }

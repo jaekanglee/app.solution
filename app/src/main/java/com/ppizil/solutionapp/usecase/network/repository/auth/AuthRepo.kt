@@ -13,4 +13,9 @@ class AuthRepo (val authServer : AuthService){
     fun requestRegistApi(email:String,nickname:String,pwd:String):Single<Response<ResultDto>>{
        return  authServer.callRegistApi(email ,nickname ,pwd)
     }
+
+
+    fun requestLoginApi(email:String,passowrd:String):Single<Response<ResultDto>>{
+        return authServer.callLoginApi(email,passowrd)
+    }
 }

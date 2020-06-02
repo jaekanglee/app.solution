@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.activity.auth.AuthActivity"/>
+        <activity android:name=".view.activity.auth.SingupActivity"/>
     </application>
 
 </manifest>

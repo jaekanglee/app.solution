@@ -1,19 +1,18 @@
 package com.ppizil.solutionapp.view.activity.intro
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ppizil.solutionapp.R
-import com.ppizil.solutionapp.databinding.SplashActivityBinding
+import com.ppizil.solutionapp.databinding.ActivitySplashBinding
 import com.ppizil.solutionapp.utils.Const
 import com.ppizil.solutionapp.utils.MakeLog
 import com.ppizil.solutionapp.view.activity.BaseActivity
-import com.ppizil.solutionapp.view.activity.auth.AuthActivity
+import com.ppizil.solutionapp.view.activity.auth.SingupActivity
 import com.ppizil.solutionapp.viewmodel.splash.SplashVm
 
-class SplashActivity : BaseActivity<SplashActivityBinding>(
-    R.layout.splash_activity,
+class SplashActivity : BaseActivity<ActivitySplashBinding>(
+    R.layout.activity_splash,
     null
 ) {
 
@@ -45,7 +44,7 @@ class SplashActivity : BaseActivity<SplashActivityBinding>(
         viewmodel.lGoAuthActivity.observe(this, Observer {
             when(it){
                 true ->{
-                    AuthActivity.startAuthActivity(this,null)
+                    SingupActivity.startAuthActivity(this,null)
                 }
                 else ->{
                     Const.showToastExeption(this,"Error")

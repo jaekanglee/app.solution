@@ -19,4 +19,10 @@ interface AuthService {
     ): Single<Response<ResultDto>>
 
 
+    @FormUrlEncoded
+    @POST("user/login")
+    fun callLoginApi(
+        @Field("email") email :String?,
+        @Field("password") pwd :String?
+    ):Single<Response<ResultDto>>
 }
