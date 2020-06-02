@@ -1,6 +1,6 @@
-package com.ppizil.solutionapp.network
+package com.ppizil.solutionapp.usecase.network
 
-import com.ppizil.solutionapp.network.service.LoginService
+import com.ppizil.solutionapp.usecase.network.service.AuthService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,8 +34,8 @@ class RetrofitHelper() {
         }
     }
 
-    fun createLoginServer():LoginService{
-        return retrofit.create(LoginService::class.java)
+    fun createLoginServer():AuthService{
+        return retrofit.create(AuthService::class.java)
     }
 
 }

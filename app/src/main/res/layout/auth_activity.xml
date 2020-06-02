@@ -2,25 +2,46 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.ppizil.solutionapp.viewmodel.auth.AuthViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
         <EditText
+            android:id="@+id/input_nickname"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:text="@={viewmodel.lNickname}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.415" />
+
+        <EditText
             android:id="@+id/input_id"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:text="@={viewmodel.lEmail}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/input_nickname"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/input_pwd"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
+            android:text="@={viewmodel.lPassword}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -34,6 +55,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:text="확인"
+            android:onClick="@{()->viewmodel.onClickConfirmBtn()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

@@ -3,43 +3,73 @@ package com.ppizil.solutionapp.view.activity.auth
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.ppizil.solutionapp.R
 import com.ppizil.solutionapp.databinding.AuthActivityBinding
+import com.ppizil.solutionapp.utils.Const
 import com.ppizil.solutionapp.view.activity.BaseActivity
+import com.ppizil.solutionapp.viewmodel.auth.AuthViewModel
+import org.koin.android.ext.android.inject
 
 class AuthActivity : BaseActivity<AuthActivityBinding>(
     R.layout.auth_activity,
     adatper = null
-    ) {
+) {
+
+
+    val viewmodel: AuthViewModel by inject ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getExtrasData()
+        setInitData()
+        bindViewModel()
+        setObserver()
+        afterInits()
+
     }
 
     override fun setInitData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun getExtrasData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun bindViewModel() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        binding.viewmodel = viewmodel
+        binding.lifecycleOwner = this
     }
 
     override fun setObserver() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        val lClickConfirm = Observer<Boolean> {
+            if (it) {
+                Const.showToastExeption(this, "Success")
+            } else {
+
+            }
+        }
+        viewmodel.lClickConfirm.observe(this, lClickConfirm)
+
+        val lErrorMsg = Observer<String?> {
+            it?.let {
+                Const.showToastExeption(this, it)
+            }
+        }
+        viewmodel.lMsg.observe(this, lErrorMsg)
     }
 
     override fun afterInits() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        viewmodel.onCreate()
     }
 
 
-    companion object{
-        fun startAuthActivity(context:Context,bundle: Bundle?){
-            val intent = Intent(context,AuthActivity::class.java)
+    companion object {
+        fun startAuthActivity(context: Context, bundle: Bundle?) {
+            val intent = Intent(context, AuthActivity::class.java)
             bundle?.let {
                 intent.putExtras(it)
             }

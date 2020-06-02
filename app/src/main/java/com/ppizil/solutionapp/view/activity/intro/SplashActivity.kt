@@ -27,6 +27,7 @@ class SplashActivity : BaseActivity<SplashActivityBinding>(
         setInitData()
         bindViewModel()
         setObserver()
+        afterInits()
     }
 
     override fun setInitData() {
