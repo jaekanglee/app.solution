@@ -1,5 +1,6 @@
 package com.ppizil.solutionapp.di
 
+import com.ppizil.solutionapp.usecase.network.ResponseEntity
 import com.ppizil.solutionapp.usecase.network.RetrofitHelper
 import com.ppizil.solutionapp.usecase.network.repository.auth.AuthRepo
 import org.koin.dsl.module
@@ -14,6 +15,10 @@ val networkModule = module {
 
     factory {
         AuthRepo((get() as RetrofitHelper).createLoginServer())
+    }
+
+    factory {
+        ResponseEntity()
     }
 
 }

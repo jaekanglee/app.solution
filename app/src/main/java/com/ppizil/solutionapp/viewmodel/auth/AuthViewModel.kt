@@ -1,11 +1,13 @@
 package com.ppizil.solutionapp.viewmodel.auth
 
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.ppizil.solutionapp.di.viewmodelModule
 import com.ppizil.solutionapp.usecase.network.repository.auth.AuthModel
 import com.ppizil.solutionapp.utils.Const
 import com.ppizil.solutionapp.viewmodel.BaseLifeCyclerViewModel
 import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.java.KoinJavaComponent.inject
 import retrofit2.Response
@@ -58,17 +60,22 @@ class AuthViewModel(private val authModel: AuthModel) : BaseLifeCyclerViewModel(
         compositeDisposable.add(
             authModel.callRegistApi(email, nickname, pwd)
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {
-                        it?.let {
-                            lMsg.postValue("Fail")
-                            lClickConfirm.postValue(false)
-                        }?: kotlin.run {
-                            lClickConfirm.postValue(true)
+                        when(it.resultCode){
+                            200->{
+                                lClickConfirm.value=(false)
+                            }
+                            else ->{
+                                lClickConfirm.value=(true)
+                            }
                         }
+                        lMsg.postValue(it.message)
+
 
                     }, {
-                        lMsg.postValue(it.localizedMessage)
+                        lMsg.value=(it.localizedMessage)
                     }
                 )
         )
