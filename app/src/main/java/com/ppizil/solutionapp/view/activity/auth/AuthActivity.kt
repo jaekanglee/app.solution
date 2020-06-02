@@ -52,7 +52,7 @@ class AuthActivity : BaseActivity<AuthActivityBinding>(
 
             }
         }
-        viewmodel.lClickConfirm.observe(this, lClickConfirm)
+        viewmodel.lResultRegist.observe(this, lClickConfirm)
 
         val lErrorMsg = Observer<String?> {
             it?.let {

@@ -17,7 +17,7 @@ class AuthViewModel(private val authModel: AuthModel) : BaseLifeCyclerViewModel(
     val lEmail = MutableLiveData<String>()
     val lPassword = MutableLiveData<String>()
     val lNickname = MutableLiveData<String>()
-    val lClickConfirm = MutableLiveData<Boolean>()
+    val lResultRegist = MutableLiveData<Boolean>()
 
 
     override fun onCreate() {
@@ -44,7 +44,7 @@ class AuthViewModel(private val authModel: AuthModel) : BaseLifeCyclerViewModel(
             requestUserRegistApi(email!!, nickname!!, pwd!!)
         } else {
             lMsg.value = "Not Valid Form, Check Your Infomation"
-            lClickConfirm.value = false
+            lResultRegist.value = false
         }
     }
 
@@ -65,16 +65,17 @@ class AuthViewModel(private val authModel: AuthModel) : BaseLifeCyclerViewModel(
                     {
                         when(it.resultCode){
                             200->{
-                                lClickConfirm.value=(false)
+                                lResultRegist.value=(true)
                             }
                             else ->{
-                                lClickConfirm.value=(true)
+                                lResultRegist.value=(false)
                             }
                         }
                         lMsg.postValue(it.message)
 
 
                     }, {
+                        lResultRegist.value=(false)
                         lMsg.value=(it.localizedMessage)
                     }
                 )
