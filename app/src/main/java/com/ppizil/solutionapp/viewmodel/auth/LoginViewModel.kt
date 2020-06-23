@@ -1,5 +1,6 @@
 package com.ppizil.solutionapp.viewmodel.auth
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ppizil.solutionapp.usecase.network.repository.auth.AuthModel
 import com.ppizil.solutionapp.utils.Const
@@ -12,11 +13,14 @@ import io.reactivex.schedulers.Schedulers
 
 class LoginViewModel(
     val authModel: AuthModel
-) :BaseLifeCyclerViewModel(){
+) : BaseLifeCyclerViewModel() {
 
-    val lEmail =MutableLiveData<String>()
-    val lPwd  = MutableLiveData<String>()
+    val lEmail = MutableLiveData<String>()
+    val lPwd = MutableLiveData<String>()
     val lResultLogin = SingleLiveEvent<Boolean>()
+    val lClickSignupBtn = SingleLiveEvent<Boolean>()
+    val lClickFindIdBtn = SingleLiveEvent<Boolean>()
+    val lClickFindPwd = SingleLiveEvent<Boolean>()
 
 
     override fun onCreate() {
@@ -36,49 +40,57 @@ class LoginViewModel(
     }
 
 
-
-    fun onClickConfirmBtn(){
-        val email = lEmail.value?:""
-        val pwd = lPwd.value?:""
-        if(Const.isNotNullString(email,pwd)){
-            if(Const.checkEmailForm(email)){
-                requestLoginApi(email,pwd)
+    fun onClickConfirmBtn() {
+        val email = lEmail.value ?: ""
+        val pwd = lPwd.value ?: ""
+        if (Const.isNotNullString(email, pwd)) {
+            if (Const.checkEmailForm(email)) {
+                requestLoginApi(email, pwd)
+            } else {
+                lMsg.value = "Not Valid Email Form"
             }
-            else{
-                lMsg.value="Not Valid Email Form"
-            }
-        }
-        else{
-            lMsg.value="Must be not null or empty"
+        } else {
+            lMsg.value = "Must be not null or empty"
         }
     }
 
 
-    fun requestLoginApi(email:String,pwd:String){
+    fun requestLoginApi(email: String, pwd: String) {
         compositeDisposable.add(
-            authModel.callLoginApi(email,pwd)
+            authModel.callLoginApi(email, pwd)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy (
+                .subscribeBy(
                     onSuccess = {
-                        when(it.resultCode){
-                            200->{
-                                lResultLogin.value=true
+                        when (it.resultCode) {
+                            200 -> {
+                                lResultLogin.value = true
                             }
-                            else->{
-                                lResultLogin.value=false
+                            else -> {
+                                lResultLogin.value = false
                             }
                         }
-                        lMsg.value= it.message
+                        lMsg.value = it.message
                     },
                     onError = {
-                        lMsg.value= it.localizedMessage
-                        lResultLogin.value=false
+                        lMsg.value = it.localizedMessage
+                        lResultLogin.value = false
                     }
                 )
         )
     }
 
+    fun onClickSignupBtn() {
+        lClickSignupBtn.value = true
+    }
+
+    fun onClickFindId() {
+        lClickSignupBtn.value = true
+    }
+
+    fun onClickFindPwd() {
+        lClickFindPwd.value = true
+    }
 
 
 }

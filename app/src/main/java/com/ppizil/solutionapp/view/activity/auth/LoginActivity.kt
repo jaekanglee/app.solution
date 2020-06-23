@@ -54,6 +54,17 @@ class LoginActivity :BaseActivity<ActivityLoginBinding>(
          }
         }
         viewmodel.lResultLogin.observe(this,lReusltLoginObserver)
+
+
+        val lClickSignupBtn = Observer<Boolean?> {
+            it?.let {
+                if(it){
+                    SingupActivity.startAuthActivity(this,null)
+                }
+            }
+
+        }
+        viewmodel.lClickSignupBtn.observe(this,lClickSignupBtn)
     }
 
     override fun afterInits() {

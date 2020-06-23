@@ -28,11 +28,12 @@ object Const {
         return !list.isNullOrEmpty()
     }
 
-    val emailRegax = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\\\w+\\\\.)+\\\\w+\$";
-    fun checkEmailForm(email:String):Boolean{
-        val pattern = Pattern.compile(emailRegax)
-        var result =  pattern.matcher(email)
-        return result.matches()
+    fun checkEmailForm(email:String?):Boolean{
+        email?.let {
+           return  android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        }?: kotlin.run {
+            return false
+        }
     }
 
     fun checkVaildForm(email: String?, nickname: String?, pwd: String?): Boolean {

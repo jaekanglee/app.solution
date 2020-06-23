@@ -8,6 +8,7 @@ import com.ppizil.solutionapp.databinding.ActivitySplashBinding
 import com.ppizil.solutionapp.utils.Const
 import com.ppizil.solutionapp.utils.MakeLog
 import com.ppizil.solutionapp.view.activity.BaseActivity
+import com.ppizil.solutionapp.view.activity.auth.LoginActivity
 import com.ppizil.solutionapp.view.activity.auth.SingupActivity
 import com.ppizil.solutionapp.viewmodel.splash.SplashVm
 
@@ -44,7 +45,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(
         viewmodel.lGoAuthActivity.observe(this, Observer {
             when(it){
                 true ->{
-                    SingupActivity.startAuthActivity(this,null)
+                    LoginActivity.startAuthActivity(this,null)
                 }
                 else ->{
                     Const.showToastExeption(this,"Error")

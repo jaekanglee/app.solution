@@ -7,6 +7,7 @@ import com.ppizil.solutionapp.di.appModule
 import com.ppizil.solutionapp.di.networkModule
 import com.ppizil.solutionapp.di.userCaseModule
 import com.ppizil.solutionapp.di.viewmodelModule
+import com.ppizil.solutionapp.utils.Const
 import com.ppizil.solutionapp.utils.SharedPreferenceBase
 import com.ppizil.solutionapp.viewmodel.auth.LoginViewModel
 import com.ppizil.solutionapp.viewmodel.auth.SingupViewModel
@@ -72,6 +73,7 @@ class AuthTest : KoinComponent{
 
         stopKoin()
     }
+/*
 
     @Test
     fun `이메일 형식에 맞고, 입력 폼에 맞고, 가입이 정상적으로 리턴 됨 `() {
@@ -115,4 +117,21 @@ class AuthTest : KoinComponent{
             userAccountObserver.onChanged(false)
         }
     }
+
+*/
+
+
+    @Test
+    fun `가입시 유효성 체크 `(){
+        val isNotNull = Const.isNotNullString("ksdy200@gmail.com","fkdl0224!","sdfsdfsdfsdf")
+        assert(isNotNull)
+    }
+
+    @Test
+    fun `이메일 유효성 체크 `(){
+        var  isValid:Boolean = Const.checkEmailForm("ksdy200gmail.com")
+        assert(isValid)
+    }
+
+
 }

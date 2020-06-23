@@ -7,4 +7,117 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
+
+
+    <style name="text12black" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp12</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text14black" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp14</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text16black" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp16</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text18black" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp18</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text24black" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp24</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text28black" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp28</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text32black" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp32</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+
+    <style name="text12white" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp12</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text14white" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp14</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="text16white" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp16</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text18white" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp18</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text20white" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp20</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text24white" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp24</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text28white" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp28</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text32white" parent="font_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp32</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="font_style">
+        <item name="android:includeFontPadding">false</item>
+    </style>
 </resources>

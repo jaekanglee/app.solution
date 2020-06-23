@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">solutionapp</string>
+
+
+    <string name="text_signup_title">회원가입</string>
+    <string name="text_find_id">아이디 찾기</string>
+    <string name="text_find_pwd">패스워드 찾기</string>
 </resources>

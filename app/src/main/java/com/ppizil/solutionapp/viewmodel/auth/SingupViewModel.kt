@@ -45,6 +45,7 @@ class SingupViewModel(private val authModel: AuthModel) : BaseLifeCyclerViewMode
         val email = lEmail.value
         val nickname = lNickname.value
         val pwd = lPassword.value
+
         if (checkVaildForm(email, nickname, pwd)) {
             if(checkEmailForm(email!!)){
                 requestUserRegistApi(email, nickname!!, pwd!!)
