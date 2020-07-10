@@ -51,11 +51,11 @@ class SingupViewModel(private val authModel: AuthModel) : BaseLifeCyclerViewMode
             }
             else{
                 lMsg.value = "Not Valid Email"
-                lResultRegist.value = false
+                setResultSignup(false)
             }
         } else {
             lMsg.value = "Not Valid Form, Check Your Infomation"
-            lResultRegist.value = false
+            setResultSignup(false)
         }
     }
 
@@ -69,20 +69,24 @@ class SingupViewModel(private val authModel: AuthModel) : BaseLifeCyclerViewMode
                     onSuccess = {
                         when(it.resultCode){
                             200->{
-                                lResultRegist.value=(true)
+                                setResultSignup(true)
                             }
                             else ->{
-                                lResultRegist.value=(false)
+                                setResultSignup(false)
                             }
                         }
                         lMsg.postValue(it.message)
                     },
                     onError = {
-                        lResultRegist.value=(false)
+                        setResultSignup(false)
                         lMsg.value=(it.localizedMessage)
                     }
                 )
         )
+    }
+
+    fun setResultSignup(state:Boolean){
+        lResultRegist.value=state
     }
 
 

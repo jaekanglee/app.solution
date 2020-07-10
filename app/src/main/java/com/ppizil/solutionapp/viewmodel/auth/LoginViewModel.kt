@@ -46,10 +46,12 @@ class LoginViewModel(
             }
             else{
                 lMsg.value="Not Valid Email Form"
+                setResultLogin(false)
             }
         }
         else{
             lMsg.value="Must be not null or empty"
+            setResultLogin(false)
         }
     }
 
@@ -63,20 +65,24 @@ class LoginViewModel(
                     onSuccess = {
                         when(it.resultCode){
                             200->{
-                                lResultLogin.value=true
+                                setResultLogin(true)
                             }
                             else->{
-                                lResultLogin.value=false
+                                setResultLogin(false)
                             }
                         }
                         lMsg.value= it.message
                     },
                     onError = {
+                        setResultLogin(false)
                         lMsg.value= it.localizedMessage
-                        lResultLogin.value=false
                     }
                 )
         )
+    }
+
+    fun setResultLogin(state:Boolean){
+        lResultLogin.value=state
     }
 
 
